@@ -12,10 +12,12 @@ body {
 }
 
 main {
-    padding: 0 20rem;
+    padding: 0 10rem;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
+    margin-bottom: 24px;
 }
 
 #contact_modal {
@@ -105,6 +107,13 @@ main {
     width: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
+}
+
+.photographer-media-info-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    color: #901C1C;
 }
 
 .modal {
