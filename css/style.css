@@ -1,5 +1,11 @@
 @import url("photographer.css");
 
+html, * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
@@ -10,8 +16,8 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     height: 90px;
+    width: 100%;
 }
 
 h1 {
@@ -31,7 +37,7 @@ h1 {
     margin-top: 100px;
 }
 
-.photographer_section article {
+.photographers_section_article {
     justify-self: center;
     display: flex;
     justify-content: center;
@@ -39,12 +45,26 @@ h1 {
     flex-direction: column;
 }
 
-.photographer_section article h2 {
+.photographers_section_article h2 {
     color: #D3573C;
     font-size: 36px;
 }
 
-.photographer_section article img {
+.photographers_section_article h3 {
+    color: #901C1C;
+    font-size: 13px;
+}
+
+.photographers_section_article h4 {
+    font-size: 10px;
+}
+
+.photographers_section_article h5 {
+    color: #757575;
+    font-size: 9px;
+}
+
+.photographers_section_article img {
     height: 200px;
     width: 200px;
     border-radius: 50%;
