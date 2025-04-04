@@ -31,6 +31,9 @@ displayHeaderSection = ({ name, city, country, tagline, portrait }) => {
 }
 
 displayPictures = (pictures) => {
+	// For each picture, adds its like value
+	let likesValue = 0;
+	
 	const photographerMediaSection = document.querySelector('.photographer-pictures');
 	
 	pictures.forEach(picture => {
@@ -65,17 +68,32 @@ displayPictures = (pictures) => {
 		infoContainer.classList.add('photographer-media-info-container');
 		
 		const mediaTitle = document.createElement('h4');
-		mediaTitle.textContent = title || 'Untitled';
+		mediaTitle.textContent = title;
+		
+		const likesAmountContainer = document.createElement('div');
+		likesAmountContainer.classList.add('photographer_media_likes');
 		
 		const likesAmount = document.createElement('p');
-		likesAmount.textContent = likes ?? 0;
+		likesAmount.textContent = likes;
+		
+		const likesLogo = document.createElement('i');
+		likesLogo.setAttribute('class', 'fa-solid fa-heart');
+		
+		likesAmountContainer.appendChild(likesAmount);
+		likesAmountContainer.appendChild(likesLogo);
 		
 		infoContainer.appendChild(mediaTitle);
-		infoContainer.appendChild(likesAmount);
+		infoContainer.appendChild(likesAmountContainer);
 		mediaContainer.appendChild(infoContainer);
+		mediaContainer.addEventListener('click', e => displayMedia(picture));
 		
 		photographerMediaSection.appendChild(mediaContainer);
+		
+		likesValue += likes;
 	});
+	
+	const totalLikes = document.querySelector('.photographer_total_likes');
+	totalLikes.textContent = likesValue;
 	
 	return photographerMediaSection;
 }
@@ -83,7 +101,34 @@ displayPictures = (pictures) => {
 displayPhotographer = async (photographer) => {
 	const { name, portrait, city, country, tagline, price, id } = photographer;
 	
+	displayPhotographerName(name);
+	displayPhotographerPricing(price);
+	
 	return displayHeaderSection({ name, city, country, tagline, portrait });
+}
+
+displayMedia = (media) => {
+	// TODO: Display media in a carousel
+	console.log(media);
+}
+
+displayPhotographerName = (photographerName) => {
+	return document.getElementById("contact_modal_name").textContent = photographerName;
+}
+
+displayPhotographerPricing = (price) => {
+	const pricing = document.querySelector('.photographer_pricing');
+	pricing.textContent = `${price}€/jour`;
+}
+
+sortPictures = (pictures) => {
+	const select = document.getElementById('nav-filters');
+	
+	return pictures.sort((a, b) => {
+		if (select.value === "popularity") return b['likes'] - a['likes'];
+		else if (select.value === "date") return new Date(b['date']) - new Date(a['date']);
+		else if (select.value === "title") return a['title'].localeCompare(b['title']);
+	});
 }
 
 init = async () => {
@@ -94,7 +139,16 @@ init = async () => {
 	const pictures = await getPictures(id);
 	
 	await displayPhotographer(photographer);
-	await displayPictures(pictures);
+	
+	const sortedPictures = sortPictures(pictures);
+	displayPictures(sortedPictures);
+	
+	const select = document.getElementById('nav-filters');
+	select.addEventListener('change', () => {
+		const sorted = sortPictures(pictures);
+		document.querySelector('.photographer-pictures').innerHTML = '';
+		displayPictures(sorted);
+	});
 }
 
 document.addEventListener("DOMContentLoaded", init);

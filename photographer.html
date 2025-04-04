@@ -25,23 +25,53 @@
       </nav>
       <section class="photographer-pictures"></section>
     </main>
+    <footer>
+      <section class="photographer_pricing_and_likes_container">
+        <article class="photographer_pricing_and_likes">
+          <div class="photographer_total_likes_container">
+            <p class="photographer_total_likes"></p>
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <p class="photographer_pricing"></p>
+        </article>
+      </section>
+    </footer>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <div class="modal_info">
+            <h2>Contactez-moi</h2>
+            <h3 id="contact_modal_name"></h3>
+          </div>
+          <img src="assets/icons/close.svg" alt="close button" onclick="closeModal()" />
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
+        <form onsubmit="submitForm(event, this)">
+          <div>
+            <label for="firstName">Prénom</label>
+            <input type="text" id="firstName" name="firstName" />
+          </div>
+          
+          <div>
+            <label for="lastName">Nom</label>
+            <input type="text" id="lastName" name="lastName" />
+          </div>
+          
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" />
+          </div>
+          
+          <div>
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" rows="5"></textarea>
+          </div>
+          <button class="contact_button" type="submit">Envoyer</button>
+        </form>
 			</div>
 		</div>
     <script src="scripts/api/getPhotographers.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="https://kit.fontawesome.com/db404d10d7.js" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -9,6 +9,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    overflow-x: hidden;
 }
 
 main {
@@ -18,6 +19,7 @@ main {
     gap: 16px;
     width: 100%;
     margin-bottom: 24px;
+    position: relative;
 }
 
 #contact_modal {
@@ -25,19 +27,20 @@ main {
 }
 
 .photographer-header {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
     align-items: center;
     background-color: #FAFAFA;
     height: 300px;
     padding: 30px;
-    position: relative;
 }
 
 .photographer-header-info-section {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    grid-column: span 2 / span 5;
 }
 
 .photographer-header-info-section h1 {
@@ -66,10 +69,6 @@ main {
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .photographer-header-image {
@@ -77,12 +76,14 @@ main {
     width: 200px;
     border-radius: 50%;
     object-fit: cover;
+    grid-column: span 2 / span 5;
 }
 
 .photographer-nav-filters {
     display: flex;
     align-items: center;
     gap: 32px;
+    margin-bottom: 32px;
 }
 
 .photographer-nav-filters label {
@@ -100,13 +101,21 @@ main {
 .photographer-pictures {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 48px;
+    gap: 64px;
 }
 
 .photographer-pictures img, .photographer-pictures video {
     width: 100%;
+    height: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
+    border-radius: 5px;
+}
+
+.photographer-pictures article {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .photographer-media-info-container {
@@ -114,6 +123,54 @@ main {
     justify-content: space-between;
     font-size: 24px;
     color: #901C1C;
+}
+
+.display_media_container {
+
+}
+
+.photographer_pricing_and_likes_container {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    right: 16px;
+}
+
+.photographer_pricing_and_likes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+    background-color: #DB8876;
+    width: fit-content;
+    padding: 16px 24px;
+    border-radius: 5px 5px 0 0;
+}
+
+.photographer_total_likes_container, .photographer_media_likes {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.photographer_pricing, .photographer_total_likes_container {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#contact_modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 32px;
 }
 
 .modal {
@@ -137,10 +194,15 @@ main {
     cursor: pointer;
 }
 
-.modal header h2 {
-    font-size: 64px;
+.modal_info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.modal_info h2, .modal_info h3 {
+    font-size: 36px;
     font-weight: normal;
-    text-align: center;
 }
 
 form {
@@ -152,7 +214,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 24px;
 }
 
 form div {
@@ -163,9 +225,48 @@ form div {
     margin-bottom: 26px;
 }
 
-form input {
+form input, form textarea {
     width: 100%;
-    height: 68px;
     border: none;
     border-radius: 5px;
+    font-size: 24px;
+}
+
+form input {
+    height: 68px;
+    padding: 0 16px;
+}
+
+form textarea {
+    padding : 16px;
+}
+
+form button {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 20px 30px;
+    border: none;
+    width: fit-content;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* MEDIA QUERIES */
+@media (max-width: 800px) {
+    main {
+        padding: 0 1rem;
+    }
+
+    .photographer-pictures {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+}
+
+@media (max-width: 1280px) {
+    .photographer-pictures {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
