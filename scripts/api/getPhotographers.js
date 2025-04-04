@@ -23,7 +23,7 @@ getPictures = async (id) => {
 	const data = await response.json();
 	
 	data['media'].forEach(media => {
-		if (media.photographerId.toString() === id) pictures.push(media);
+		if (media['photographerId'].toString() === id) pictures.push(media);
 	})
 	
 	console.log(pictures);
