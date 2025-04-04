@@ -1,3 +1,6 @@
+let currentMediaIndex = 0;
+let currentMediaList = [];
+
 displayHeaderSection = ({ name, city, country, tagline, portrait }) => {
 	const photographerHeaderSection = document.querySelector('.photographer-header');
 	const picture = `assets/photographers/${portrait}`;
@@ -85,7 +88,12 @@ displayPictures = (pictures) => {
 		infoContainer.appendChild(mediaTitle);
 		infoContainer.appendChild(likesAmountContainer);
 		mediaContainer.appendChild(infoContainer);
-		mediaContainer.addEventListener('click', e => displayMedia(picture));
+		
+		mediaContainer.addEventListener('click', () => {
+			currentMediaList = pictures;
+			currentMediaIndex = pictures.indexOf(picture);
+			openLightbox(currentMediaList[currentMediaIndex]);
+		});
 		
 		photographerMediaSection.appendChild(mediaContainer);
 		
@@ -107,9 +115,43 @@ displayPhotographer = async (photographer) => {
 	return displayHeaderSection({ name, city, country, tagline, portrait });
 }
 
-displayMedia = (media) => {
-	// TODO: Display media in a carousel
-	console.log(media);
+function openLightbox(media) {
+	const lightbox = document.getElementById('lightbox');
+	const content = lightbox.querySelector('.lightbox-content');
+	content.innerHTML = '';
+	
+	let element;
+	const mediaSrc = `assets/images/${media['photographerId']}/${media.image || media.video}`;
+	
+	if (media.image) {
+		element = document.createElement('img');
+		element.src = mediaSrc;
+		element.alt = media.title;
+	} else {
+		element = document.createElement('video');
+		element.controls = true;
+		element.innerHTML = `<source src="${mediaSrc}" type="video/mp4">`;
+	}
+	
+	content.appendChild(element);
+	lightbox.classList.remove('hidden');
+	document.body.classList.add('no-scroll');
+}
+
+function closeLightbox() {
+	document.getElementById('lightbox').classList.add('hidden');
+	document.body.classList.remove('no-scroll');
+}
+
+
+function showNext() {
+	currentMediaIndex = (currentMediaIndex + 1) % currentMediaList.length;
+	openLightbox(currentMediaList[currentMediaIndex]);
+}
+
+function showPrev() {
+	currentMediaIndex = (currentMediaIndex - 1 + currentMediaList.length) % currentMediaList.length;
+	openLightbox(currentMediaList[currentMediaIndex]);
 }
 
 displayPhotographerName = (photographerName) => {
@@ -148,6 +190,17 @@ init = async () => {
 		const sorted = sortPictures(pictures);
 		document.querySelector('.photographer-pictures').innerHTML = '';
 		displayPictures(sorted);
+	});
+	
+	document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+	document.querySelector('.lightbox-next').addEventListener('click', showNext);
+	document.querySelector('.lightbox-prev').addEventListener('click', showPrev);
+	
+	document.addEventListener('keydown', (e) => {
+		if (document.getElementById('lightbox').classList.contains('hidden')) return;
+		if (e.key === 'ArrowRight') showNext();
+		if (e.key === 'ArrowLeft') showPrev();
+		if (e.key === 'Escape') closeLightbox();
 	});
 }
 

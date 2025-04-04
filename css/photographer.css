@@ -253,6 +253,60 @@ form button {
     cursor: pointer;
 }
 
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.lightbox.hidden {
+    display: none;
+}
+
+.lightbox-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content img,
+.lightbox-content video {
+    align-self: center;
+    max-width: 50%;
+    aspect-ratio: 1/1;
+}
+
+.lightbox button {
+    position: absolute;
+    background: none;
+    border: none;
+    color: #901C1C;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.lightbox-close {
+    top: 20px; right: 20px;
+}
+.lightbox-prev {
+    left: 20px;
+}
+.lightbox-next {
+    right: 20px;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
 
 /* MEDIA QUERIES */
 @media (max-width: 800px) {
