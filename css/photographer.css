@@ -80,7 +80,10 @@ main {
     grid-column: span 2 / span 5;
 }
 
-/* NATIVE HTML SELECT */
+.nav-filters {
+    font-weight: 600;
+}
+
 .photographer-nav-filters {
     display: flex;
     align-items: center;
@@ -105,7 +108,6 @@ main {
     border-bottom: 1px solid white;
 }
 
-/* CUSTOM SELECT */
 .custom-select {
     position: relative;
     cursor: pointer;
