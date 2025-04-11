@@ -16,28 +16,28 @@
     <main id="main">
       <section class="photographer-header"></section>
       <nav class="photographer-nav-filters">
-        <label for="nav-filters">Trier par</label>
-        
-        <!-- NATIVE HTML SELECT -->
-        <select name="nav-filters" id="nav-filters">
-          <option value="popularity" selected>Popularité</option>
-          <option value="date">Date</option>
-          <option value="title">Titre</option>
-        </select>
-        
+        <p id="sort-label" class="nav-filters">Trier par</p>
+      
         <!-- CUSTOM SELECT -->
-        <section class="custom-select" style="display: none;">
-          <div class="custom-select-trigger-ctn">
-            <div class="custom-select-trigger" id="popularity">Popularité</div>
+        <section class="custom-select" role="listbox" tabindex="0" aria-labelledby="sort-label">
+          <div class="custom-select-trigger" data-sort="popularity">
+            <span class="custom-select-label">Popularité</span>
             <i class="fa-solid fa-chevron-up"></i>
           </div>
-          
+
           <article class="custom-select-options-ctn">
-            <span class="custom-select-option" id="date">Date</span>
-            <span class="custom-select-option" id="title">Titre</span>
+            <div class="custom-select-divider-ctn">
+              <span class="custom-select-divider"></span>
+            </div>
+            <span class="custom-select-option" data-sort="date" role="option">Date</span>
+            <div class="custom-select-divider-ctn">
+              <span class="custom-select-divider"></span>
+            </div>            
+            <span class="custom-select-option custom-select-last-option" data-sort="title" role="option">Titre</span>
           </article>
         </section>
       </nav>
+      
       <section class="photographer-pictures"></section>
     </main>
     <footer>
@@ -58,9 +58,9 @@
             <h2>Contactez-moi</h2>
             <h3 id="contact_modal_name"></h3>
           </div>
-          <img src="assets/icons/close.svg" alt="close button" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" alt="Bouton pour fermer la modal" class="close-button" />
         </header>
-        <form onsubmit="submitForm(event, this)">
+        <form class="contact_form">
           <div>
             <label for="firstName">Prénom</label>
             <input type="text" id="firstName" name="firstName" />
@@ -92,10 +92,10 @@
       <button class="lightbox-next" aria-label="Suivant">&#10095;</button>
     </div>
     
-    <script src="./scripts/custom-select.js"></script>
-    <script src="./scripts/api/getPhotographers.js"></script>
-    <script src="./scripts/pages/photographer.js"></script>
-    <script src="./scripts/utils/contactForm.js"></script>
+    <script src="./scripts/custom-select.js" defer></script>
+    <script src="./scripts/api/getPhotographers.js" defer></script>
+    <script src="./scripts/pages/photographer.js" defer></script>
+    <script src="./scripts/utils/contactForm.js" defer></script>
     <script src="https://kit.fontawesome.com/db404d10d7.js" crossorigin="anonymous"></script>
   </body>
 </html>

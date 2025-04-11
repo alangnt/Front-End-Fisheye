@@ -112,7 +112,7 @@ main {
     min-width: 150px;
 }
 
-.custom-select-trigger-ctn {
+.custom-select-trigger {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -133,10 +133,20 @@ main {
     display: none;
     flex-direction: column;
     border-top: none;
-    border-radius: 0 0 8px 8px;
     max-height: 0;
     transition: max-height 0.3s ease-in-out;
     z-index: 100;
+}
+
+.custom-select-divider-ctn {
+    display: flex;
+    justify-content: center;
+    background-color: #901C1C;
+}
+
+.custom-select-divider {
+    border-top: 1px solid white;
+    width: 90%;
 }
 
 .custom-select-option {
@@ -144,6 +154,10 @@ main {
     transition: background 0.2s;
     background-color: #901C1C;
     color: white;
+}
+
+.custom-select-last-option {
+    border-radius: 0 0 8px 8px;
 }
 
 .custom-select-open {
@@ -185,6 +199,17 @@ main {
     aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.fa-heart {
+	color: black;
+	transition: color 0.2s ease;
+	cursor: pointer;
+}
+
+.fa-heart.liked {
+	color: red;
 }
 
 .photographer-pictures article {
@@ -198,10 +223,6 @@ main {
     justify-content: space-between;
     font-size: 24px;
     color: #901C1C;
-}
-
-.display_media_container {
-
 }
 
 .photographer_pricing_and_likes_container {

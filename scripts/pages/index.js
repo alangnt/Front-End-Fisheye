@@ -1,17 +1,27 @@
-displayData = async (photographers) => {
-    const photographersSection = document.querySelector(".photographer_section");
-    
-    photographers.forEach((photographer) => {
-        const photographerModel = photographerTemplate(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM();
-        photographersSection.appendChild(userCardDOM);
-    });
+class DisplayData {
+    constructor(photographers) {
+        this.photographers = photographers;
+    }
+
+    displayPhotographers = () => {
+        const photographersSection = document.querySelector(".photographer_section");
+        
+        this.photographers.forEach((photographer) => {
+            const photographerClass = new Photographer(photographer);
+            const photographerModel = photographerClass.photographerTemplate();
+
+            photographersSection.appendChild(photographerModel);
+        });
+    }
 }
 
-init = async () => {
-    const { photographers } = await getPhotographers();
-    await displayData(photographers);
-}
+document.addEventListener("DOMContentLoaded", async () => {
+    const fetcher = new FetchData("data/photographers.json");
 
-init();
-    
+    const data = await fetcher.fetchData();
+
+    const photographers = data.photographers;
+
+    const display = new DisplayData(photographers);
+    display.displayPhotographers();
+});

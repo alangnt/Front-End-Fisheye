@@ -1,40 +1,41 @@
-function photographerTemplate(data) {
-    const { name, portrait, city, country, tagline, price, id } = data;
-
-    const picture = `assets/photographers/${portrait}`;
-
-    function getUserCardDOM() {
-        const article = document.createElement( 'article' );
-        article.classList.add( 'photographers_section_article' );
-        article.addEventListener( 'click', ( event ) => photographerPage(id));
-        
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        
-        const h2 = document.createElement( 'h2' );
-        h2.textContent = name;
-        
-        const location = document.createElement( 'h3' );
-        location.textContent = `${city}, ${country}`;
-        
-        const tagLine = document.createElement( 'h4' );
-        tagLine.textContent = tagline;
-        
-        const cost = document.createElement( 'h5' );
-        cost.textContent = `${price}€/jour`;
-        
-        article.appendChild(img);
-        article.appendChild(h2);
-        article.appendChild(location);
-        article.appendChild(tagLine);
-        article.appendChild(cost);
-        
-        return (article);
+class Photographer {
+    constructor(photographer) {
+        this.photographer = photographer;
+		this.picture = `assets/photographers/${photographer.portrait}`;
     }
-    return { name, picture, city, country, tagline, price, getUserCardDOM }
-}
 
-function photographerPage(id) {
-    if (!id) return;
-    window.location.href = `photographer.html?id=${id}`;
+    photographerTemplate = () => {
+        const { name, city, country, tagline, price, id } = this.photographer;
+    
+        const article = document.createElement('article');
+        article.classList.add('photographers_section_article');
+    
+        article.setAttribute('tabindex', '0');
+        article.setAttribute('role', 'link');
+        article.setAttribute('aria-label', `${name}, ${city}, ${country}, ${tagline}, ${price} euros par jour`);
+    
+        article.addEventListener('click', () => this.sendToPhotographerPage(id));
+
+        article.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.sendToPhotographerPage(id);
+            }
+        });
+    
+        article.innerHTML = `
+            <img src="${this.picture}" alt="${name}">
+            <h2>${name}</h2>
+            <h3>${city}, ${country}</h3>
+            <h4>${tagline}</h4>
+            <h5>${price}€/jour</h5>
+        `;
+    
+        return article;
+    }
+
+    sendToPhotographerPage = (id) => {
+        if (!id) return;
+        window.location.href = `photographer.html?id=${id}`;
+    }
 }
