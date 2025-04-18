@@ -9,6 +9,28 @@ class Photographer {
     
         const article = document.createElement('article');
         article.classList.add('photographers_section_article');
+        
+        article.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.sendToPhotographerPage(id);
+            }
+            
+            const allCards = Array.from(document.querySelectorAll('.photographers_section_article'));
+            const currentIndex = allCards.indexOf(article);
+            
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                const next = allCards[currentIndex + 1];
+                if (next) next.focus();
+            }
+            
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                const prev = allCards[currentIndex - 1];
+                if (prev) prev.focus();
+            }
+        });
     
         article.setAttribute('tabindex', '0');
         article.setAttribute('role', 'link');

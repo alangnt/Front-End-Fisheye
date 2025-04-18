@@ -17,13 +17,13 @@
       <section class="photographer-header"></section>
       <nav class="photographer-nav-filters">
         <p id="sort-label" class="nav-filters">Trier par</p>
-      
-        <section class="custom-select" role="listbox" tabindex="0" aria-labelledby="sort-label">
-          <div class="custom-select-trigger" data-sort="popularity">
+        
+        <section class="custom-select" role="listbox" aria-labelledby="sort-label">
+          <div class="custom-select-trigger" role="button" tabindex="0" aria-expanded="false" data-sort="popularity">
             <span class="custom-select-label">Popularité</span>
             <i class="fa-solid fa-chevron-up"></i>
           </div>
-
+          
           <article class="custom-select-options-ctn">
             <div class="custom-select-divider-ctn">
               <span class="custom-select-divider"></span>
@@ -31,7 +31,7 @@
             <span class="custom-select-option" data-sort="date" role="option">Date</span>
             <div class="custom-select-divider-ctn">
               <span class="custom-select-divider"></span>
-            </div>            
+            </div>
             <span class="custom-select-option custom-select-last-option" data-sort="title" role="option">Titre</span>
           </article>
         </section>
@@ -57,27 +57,29 @@
             <h2>Contactez-moi</h2>
             <h3 id="contact_modal_name"></h3>
           </div>
-          <img src="assets/icons/close.svg" alt="Bouton pour fermer la modal" class="close-button" />
+          <div class="close-button" tabindex="0" role="button" aria-label="Fermer le formulaire">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
         </header>
         <form class="contact_form">
           <div>
             <label for="firstName">Prénom</label>
-            <input type="text" id="firstName" name="firstName" />
+            <input type="text" id="firstName" name="firstName" required />
           </div>
           
           <div>
             <label for="lastName">Nom</label>
-            <input type="text" id="lastName" name="lastName" />
+            <input type="text" id="lastName" name="lastName" required />
           </div>
           
           <div>
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" />
+            <input type="email" id="email" name="email" required />
           </div>
           
           <div>
             <label for="message">Votre message</label>
-            <textarea id="message" name="message" rows="5"></textarea>
+            <textarea id="message" name="message" rows="5" required></textarea>
           </div>
           <button class="contact_button" type="submit">Envoyer</button>
         </form>

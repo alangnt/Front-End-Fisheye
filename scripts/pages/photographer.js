@@ -160,12 +160,27 @@ class PhotographerPage {
 				this.currentMediaIndex = index;
 				this.open(this.currentMediaList[this.currentMediaIndex]);
 			});
-
+			
 			mediaContainer.addEventListener('keydown', (e) => {
+				const allMediaContainers = Array.from(document.querySelectorAll('.photographer-pictures article'));
+				const currentIndex = allMediaContainers.indexOf(mediaContainer);
+				
 				if (e.key === 'Enter' || e.key === ' ') {
 					e.preventDefault();
 					this.currentMediaIndex = index;
 					this.open(this.currentMediaList[this.currentMediaIndex]);
+				}
+				
+				if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+					e.preventDefault();
+					const next = allMediaContainers[currentIndex + 1];
+					if (next) next.focus();
+				}
+				
+				if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+					e.preventDefault();
+					const prev = allMediaContainers[currentIndex - 1];
+					if (prev) prev.focus();
 				}
 			});
 				
