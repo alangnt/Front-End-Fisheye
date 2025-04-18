@@ -377,13 +377,15 @@ form button {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 50%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
 }
 
 .lightbox-content img,
 .lightbox-content video {
     align-self: center;
-    max-width: 50%;
-    aspect-ratio: 1/1;
+    width: 100%;
 }
 
 .lightbox button {
