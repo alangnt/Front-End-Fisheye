@@ -15,41 +15,41 @@
     </header>
     <main id="main">
       <section class="photographer-header"></section>
-      <nav class="photographer-nav-filters">
+      <div class="photographer-nav-filters">
         <p id="sort-label" class="nav-filters">Trier par</p>
         
-        <section class="custom-select" role="listbox" aria-labelledby="sort-label">
+        <ul class="custom-select" role="combobox" aria-labelledby="sort-label">
           <div class="custom-select-trigger" role="button" tabindex="0" aria-expanded="false" data-sort="popularity">
-            <span class="custom-select-label">Popularité</span>
+            <li class="custom-select-label">Popularité</li>
             <i class="fa-solid fa-chevron-up"></i>
           </div>
           
-          <article class="custom-select-options-ctn">
+          <div class="custom-select-options-ctn">
             <div class="custom-select-divider-ctn">
               <span class="custom-select-divider"></span>
             </div>
-            <span class="custom-select-option" data-sort="date" role="option">Date</span>
+            <li class="custom-select-option" data-sort="date" role="option">Date</li>
             <div class="custom-select-divider-ctn">
               <span class="custom-select-divider"></span>
             </div>
-            <span class="custom-select-option custom-select-last-option" data-sort="title" role="option">Titre</span>
-          </article>
-        </section>
-      </nav>
+            <li class="custom-select-option custom-select-last-option" data-sort="title" role="option">Titre</li>
+          </div>
+        </ul>
+      </div>
       
       <section class="photographer-pictures"></section>
     </main>
-    <footer>
-      <section class="photographer_pricing_and_likes_container">
-        <article class="photographer_pricing_and_likes">
+    <div>
+      <div class="photographer_pricing_and_likes_container">
+        <div class="photographer_pricing_and_likes">
           <div class="photographer_total_likes_container">
             <p class="photographer_total_likes"></p>
             <i class="fa-solid fa-heart"></i>
           </div>
           <p class="photographer_pricing"></p>
-        </article>
-      </section>
-    </footer>
+        </div>
+      </div>
+    </div>
     <div id="contact_modal">
 			<div class="modal">
 				<header>

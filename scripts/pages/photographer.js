@@ -304,8 +304,16 @@ class PhotographerPage {
 			element.controls = true;
 			element.innerHTML = `<source src="${src}" type="video/mp4">`;
 		}
+
+		const div = document.createElement('div');
+		div.appendChild(element);
+
+		const title = document.createElement('p');
+		title.textContent = media.title;
 		
-		this.content.appendChild(element);
+		this.content.appendChild(div);
+		this.content.appendChild(title);
+		this.content.classList.add('lightbox-media');
 		this.lightbox.classList.remove('hidden');
 		document.body.classList.add('no-scroll');
 	}
