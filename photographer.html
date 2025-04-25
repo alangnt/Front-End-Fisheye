@@ -14,42 +14,37 @@
       </a>
     </header>
     <main id="main">
-      <section class="photographer-header"></section>
-      <nav class="photographer-nav-filters">
+      <div class="photographer-header"></div>
+      
+      <div class="photographer-nav-filters">
         <p id="sort-label" class="nav-filters">Trier par</p>
         
-        <section class="custom-select" role="listbox" aria-labelledby="sort-label">
-          <div class="custom-select-trigger" role="button" tabindex="0" aria-expanded="false" data-sort="popularity">
+        <div class="custom-select" role="listbox" aria-labelledby="sort-label">
+          <button class="custom-select-trigger" id="sort-options" aria-haspopup="listbox" aria-expanded="false" tabindex="0" data-sort="popularity">
             <span class="custom-select-label">Popularité</span>
-            <i class="fa-solid fa-chevron-up"></i>
-          </div>
+            <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
+          </button>
           
-          <article class="custom-select-options-ctn">
-            <div class="custom-select-divider-ctn">
-              <span class="custom-select-divider"></span>
-            </div>
-            <span class="custom-select-option" data-sort="date" role="option">Date</span>
-            <div class="custom-select-divider-ctn">
-              <span class="custom-select-divider"></span>
-            </div>
-            <span class="custom-select-option custom-select-last-option" data-sort="title" role="option">Titre</span>
-          </article>
-        </section>
-      </nav>
+          <ul class="custom-select-options-ctn" role="listbox">
+            <li role="presentation" class="custom-select-divider-ctn"><span class="custom-select-divider"></span></li>
+            <li class="custom-select-option" data-sort="date" role="option">Date</li>
+            <li role="presentation" class="custom-select-divider-ctn"><span class="custom-select-divider"></span></li>
+            <li class="custom-select-option custom-select-last-option" data-sort="title" role="option">Titre</li>
+          </ul>
+        </div>
+      </div>
       
       <section class="photographer-pictures"></section>
     </main>
-    <footer>
-      <section class="photographer_pricing_and_likes_container">
-        <article class="photographer_pricing_and_likes">
-          <div class="photographer_total_likes_container">
-            <p class="photographer_total_likes"></p>
-            <i class="fa-solid fa-heart"></i>
-          </div>
-          <p class="photographer_pricing"></p>
-        </article>
-      </section>
-    </footer>
+    <div class="photographer_pricing_and_likes_container">
+      <div class="photographer_pricing_and_likes">
+        <div class="photographer_total_likes_container">
+          <p class="photographer_total_likes"></p>
+          <i class="fa-solid fa-heart"></i>
+        </div>
+        <p class="photographer_pricing"></p>
+      </div>
+    </div>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
