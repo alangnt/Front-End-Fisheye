@@ -112,7 +112,6 @@ main {
     position: relative;
     cursor: pointer;
     min-width: 150px;
-    list-style-type: none;
 }
 
 .custom-select-trigger {
@@ -386,23 +385,13 @@ form button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.lightbox-content div {
     width: 50%;
     aspect-ratio: 1/1;
     overflow: hidden;
 }
 
-.lightbox-content p {
-    margin-top: 16px;
-    font-size: 24px;
-    color: #901C1C;
-    width: 50%;
-}
-
-.lightbox-content div img,
-.lightbox-content div video {
+.lightbox-content img,
+.lightbox-content video {
     align-self: center;
     width: 100%;
     overflow: hidden;
