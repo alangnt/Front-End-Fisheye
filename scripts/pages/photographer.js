@@ -298,14 +298,28 @@ class PhotographerPage {
 		if (media.image) {
 			element = document.createElement('img');
 			element.src = src;
+			element.setAttribute('tabindex', '0');
 			element.alt = media.title;
+			setTimeout(() => {
+				element.focus();
+			}, 0);
 		} else {
 			element = document.createElement('video');
 			element.controls = true;
+			element.setAttribute('tabindex', '0');
 			element.innerHTML = `<source src="${src}" type="video/mp4">`;
+			setTimeout(() => {
+				element.focus();
+			}, 0);
 		}
 		
 		this.content.appendChild(element);
+		
+		const titleElement = document.createElement('p');
+		titleElement.textContent = media.title;
+		titleElement.classList.add('lightbox-title');
+		this.content.appendChild(titleElement);
+		
 		this.lightbox.classList.remove('hidden');
 		document.body.classList.add('no-scroll');
 	}

@@ -382,6 +382,7 @@ form button {
 
 .lightbox-content {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 50%;
@@ -393,6 +394,14 @@ form button {
 .lightbox-content video {
     align-self: center;
     width: 100%;
+    overflow: hidden;
+}
+
+.lightbox-content p {
+    font-size: 24px;
+    color: #901C1C;
+    place-self: start;
+    margin-top: 4px;
 }
 
 .lightbox button {
